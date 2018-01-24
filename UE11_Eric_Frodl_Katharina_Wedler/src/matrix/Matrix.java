@@ -5,7 +5,8 @@ import java.util.LinkedList;
 public class Matrix <T extends Comparable<T>> {
     private Arithmetic<T> arithmetic;
     private LinkedList<LinkedList<T>> data;
-    private int rows, columns;
+    private Matrix neueMat;
+    private int rows, columns, tempNum;
 
     public Matrix(int rows, int columns, Arithmetic<T> arithmetic){
         this.rows = rows;
@@ -48,7 +49,7 @@ public class Matrix <T extends Comparable<T>> {
 
 
 
-    
+
     public Matrix<T> add(Matrix<T> other){
         if (other.getColumns() == columns && other.getRows() == rows){
 
@@ -56,10 +57,15 @@ public class Matrix <T extends Comparable<T>> {
     }
 
     public Matrix<T> mul(Matrix<T> other){
+        neueMat = new Matrix<T>(getRows(), other.getColumns(), arithmetic);
         if (columns == other.getRows()){
-            for(int x = 0; x < other.getRows(); x++){
+            for(int x = 0; x < getRows(); x++){
                 for(int y = 0; y < other.getColumns(); y++){
-
+                    tempNum = 0;
+                    for (int z = 0; z < getColumns(); z++){
+                        tempNum += mul((getCell(x,z), other.getCell(z,y));
+                        neueMat.setCell(x ,y ,tempNum);
+                    }
                 }
             }
         } else return null;
