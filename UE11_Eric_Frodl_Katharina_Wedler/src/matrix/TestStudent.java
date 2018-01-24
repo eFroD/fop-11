@@ -38,6 +38,14 @@ public class TestStudent {
 
     @Test
     public void testAddMatrix(){
+        Matrix matrix = new Matrix(5,5,xint);
+        Matrix matrix2= new Matrix(5,5,xint);
+        Matrix matrix3 = new Matrix(5,5,xint);
+        matrix2.fillInt(2);
+        matrix.fillInt(4);
+        matrix3.fillInt(6);
+        assertEquals(matrix3, matrix.add(matrix2));
+
 
 
     }
@@ -63,6 +71,18 @@ public class TestStudent {
     @Test
     public void testResize(){
 
+    }
+
+
+    @Test
+    public void testCompare(){
+        Matrix matrix = new Matrix(5,5,xint);
+        Matrix matrix2= new Matrix(5,5,xint);
+        matrix2.fillInt(2);
+        matrix.fillInt(1);
+
+        matrix.diplayMatrix();
+        assertEquals(false, matrix.compareMatrix(matrix2));
     }
 
 

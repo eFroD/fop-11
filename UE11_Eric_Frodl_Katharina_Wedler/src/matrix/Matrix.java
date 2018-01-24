@@ -5,7 +5,8 @@ import java.util.LinkedList;
 public class Matrix <T extends Comparable<T>> {
     private Arithmetic<T> arithmetic;
     private LinkedList<LinkedList<T>> data;
-    private LinkedList<T> tempList;
+    private LinkedList<T> colList;
+    private LinkedList<T>tempList;
     private Matrix neueMat;
     private int rows, columns;
     protected T tempNum;
@@ -14,6 +15,13 @@ public class Matrix <T extends Comparable<T>> {
         this.rows = rows;
         this.columns = columns;
         this.arithmetic = arithmetic;
+        data = new LinkedList<>();
+        colList = new LinkedList<>();
+        for (int i=0; i < rows; i++){
+            for (int j=0; j <columns; j++){
+                colList.add(j, arithmetic.zero());
+            }data.add(i,colList);
+        }
     }
 
     public int getRows(){
@@ -110,5 +118,24 @@ public class Matrix <T extends Comparable<T>> {
                 }
             }
         }return true;
+    }
+
+    public void fillInt(T temp){
+
+        for (int i=0; i< this.getRows(); i++){
+            for (int j = 0; j< this.getColumns();j++){
+                this.setCell(i,j,temp);
+                arithmetic.add(temp,temp);
+            }
+        }
+    }
+    public void diplayMatrix(){
+        for (int i=0; i< this.getRows(); i++){
+            for (int j = 0; j< this.getColumns();j++){
+                System.out.print(this.getCell(i,j)+" ");
+            }System.out.println("");
+
+
+    }
     }
 }
