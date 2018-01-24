@@ -15,7 +15,7 @@ public class Matrix <T extends Comparable<T>> {
     public T getCell(int row, int column){}
     public void setCell(int row, int column, T value){}
 
-    
+
 
 
     //ICh hab schon was geschreiebne
