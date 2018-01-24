@@ -176,7 +176,20 @@ public class TestStudent {
         mat.setCell(2,2,22.1);
         mat.setCell(2,3,6.07);
 
+        mat.setCell(3,0,53.1);
+        mat.setCell(3,1,12.3);
+        mat.setCell(3,2,221.0);
+        mat.setCell(3,3,62.027);
 
+        Matrix mat2 = new Matrix(2,2,xfloat);
+
+        mat2.setCell(0,0,2.4);
+        mat2.setCell(0,1,24.3);
+
+        mat2.setCell(1,0,21.2);
+        mat2.setCell(1,1,7.63);
+
+        assertEquals(true, mat.resize(-2,-2).compareMatrix(mat2));
     }
 
     /**
