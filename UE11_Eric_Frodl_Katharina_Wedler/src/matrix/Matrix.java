@@ -100,7 +100,15 @@ public class Matrix <T extends Comparable<T>> {
                     else neueMat.setCell(i,j,this.getCell(i,j));
                 }
             }return neueMat;
+    }
 
-
+    public boolean compareMatrix(Matrix<T> matrix){
+        for (int i=0; i <this.getRows(); i++){
+            for (int j = 0; j < this.getColumns();j++){
+                if (this.getCell(i,j).compareTo(matrix.getCell(i,j)) !=0){
+                    return false;
+                }
+            }
+        }return true;
     }
 }
