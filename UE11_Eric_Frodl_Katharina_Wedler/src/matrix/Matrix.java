@@ -16,8 +16,9 @@ public class Matrix <T extends Comparable<T>> {
         this.columns = columns;
         this.arithmetic = arithmetic;
         data = new LinkedList<>();
-        colList = new LinkedList<>();
+
         for (int i=0; i < rows; i++){
+            colList = new LinkedList<>();
             for (int j=0; j <columns; j++){
                 colList.add(j, arithmetic.zero());
             }data.add(i,colList);
@@ -34,7 +35,8 @@ public class Matrix <T extends Comparable<T>> {
         return data.get(row).get(column);
     }
     public void setCell(int row, int column, T value){
-        data.get(row).set(column, value);
+        data.get(row).set(column,value);
+
     }
 
     public Matrix<T> add(Matrix<T> other){
