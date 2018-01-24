@@ -1,5 +1,6 @@
 package matrix;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Matrix <T extends Comparable<T>> {
@@ -67,9 +68,9 @@ public class Matrix <T extends Comparable<T>> {
     public Matrix<T> transpose(){
 
         newMat = new Matrix<T>(this.getColumns(),this.getRows(),arithmetic);
-        for (int i = 0; i < neueMat.getRows() ;i++){
-            for (int j = 0; j < neueMat.getColumns(); j++){
-                neueMat.setCell(i,j,this.getCell(j,i));
+        for (int i = 0; i < newMat.getRows() ;i++){
+            for (int j = 0; j < newMat.getColumns(); j++){
+                newMat.setCell(i,j,this.getCell(j,i));
 
             }
         }return newMat;
@@ -77,33 +78,18 @@ public class Matrix <T extends Comparable<T>> {
 
     public T getMinMax(boolean min){
         tempList = new LinkedList<>();
-        for(int x = 0; x < rows; x++){
+        for(int x = 0; x < getRows(); x++){
             for(int y = 0; y < getColumns(); y++) {
                 tempList.add(this.getCell(x,y));
             }
         }
-
+        Collections.sort(tempList);
         System.out.println(tempList);
+        if (min){
+            return tempList.getFirst();
+        }else return tempList.getLast();
 
-        if (min) {
-            for(int i = 0; i < tempList.size(); i++){
-                tempNum2 = tempList.get(i);
-                if(tempNum2.compareTo(tempNum) < 0){
-                    tempNum = tempList.get(i);
-                }
-            }
-            return tempNum;
-        }
 
-        else {
-            for(int i = 0; i < tempList.size(); i++){
-                tempNum2 = tempList.get(i);
-                if(tempNum2.compareTo(tempNum) > 0){
-                    tempNum = tempList.get(i);
-                }
-            }
-            return tempNum;
-        }
     }
 
     public Matrix<T> resize(int rows, int columns){
