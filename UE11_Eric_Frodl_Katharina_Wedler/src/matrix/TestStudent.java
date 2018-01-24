@@ -1,8 +1,6 @@
-package matrix.matrix;
+package matrix;
 import static org.junit.Assert.*;
 
-import matrix.IntegerArithmetic;
-import matrix.Matrix;
 import org.junit.Test;
 
 /**
@@ -13,7 +11,7 @@ import org.junit.Test;
 
 public class TestStudent {
 
-    IntegerArithmetic xint = new IntegerArithmetic;
+    IntegerArithmetic xint = new IntegerArithmetic();
 
     @Test
     public void testMatrix(){
@@ -41,6 +39,7 @@ public class TestStudent {
     @Test
     public void testAddMatrix(){
 
+
     }
 
     @Test
@@ -65,6 +64,9 @@ public class TestStudent {
     public void testResize(){
 
     }
+
+
+
 
 
 }
