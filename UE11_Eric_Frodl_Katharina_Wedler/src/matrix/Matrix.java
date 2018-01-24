@@ -17,6 +17,32 @@ public class Matrix <T extends Comparable<T>> {
     public T getCell(int row, int column){}
     public void setCell(int row, int column, T value){}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     public Matrix<T> add(Matrix<T> other){
         if (other.getColumns() == columns && other.getRows() == rows){
 
@@ -25,7 +51,11 @@ public class Matrix <T extends Comparable<T>> {
 
     public Matrix<T> mul(Matrix<T> other){
         if (columns == other.getRows()){
+            for(int x = 0; x < other.getRows(); x++){
+                for(int y = 0; y < other.getColumns(); y++){
 
+                }
+            }
         } else return null;
     }
 
