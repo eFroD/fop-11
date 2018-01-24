@@ -67,9 +67,9 @@ public class Matrix <T extends Comparable<T>> {
     public Matrix<T> transpose(){
 
         newMat = new Matrix<T>(this.getColumns(),this.getRows(),arithmetic);
-        for (int i = 0; i < neueMat.getRows() ;i++){
-            for (int j = 0; j < neueMat.getColumns(); j++){
-                neueMat.setCell(i,j,this.getCell(j,i));
+        for (int i = 0; i < newMat.getRows() ;i++){
+            for (int j = 0; j < newMat.getColumns(); j++){
+                newMat.setCell(i,j,this.getCell(j,i));
 
             }
         }return newMat;

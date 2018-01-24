@@ -13,6 +13,10 @@ public class TestStudent {
     IntegerArithmetic xint = new IntegerArithmetic();
     FloatArithmetic xfloat = new FloatArithmetic();
 
+    /**
+     * tests generating a matrix
+     */
+
     @Test
     public void testMatrix(){
         Matrix mat1 = new Matrix(2, 2, xint);
@@ -20,12 +24,20 @@ public class TestStudent {
         assertEquals(2, mat1.getColumns());
     }
 
+    /**
+     * tests getting the index of a cell
+     */
+
     @Test
     public void testGetCell(){
         Matrix mat1 = new Matrix(2, 2, xint);
         mat1.setCell(1,1,3);
         assertEquals(3, mat1.getCell(1,1));
     }
+
+    /**
+     * tests setting the index of a cell
+     */
 
     @Test
     public void testSetCell(){
@@ -35,6 +47,10 @@ public class TestStudent {
         mat1.setCell(1,1,8);
         assertEquals(8, mat1.getCell(1,1));
     }
+
+    /**
+     * tests adding two matrices
+     */
 
     @Test
     public void testAddMatrix(){
@@ -50,6 +66,10 @@ public class TestStudent {
         assertEquals(true, matrix3.compareMatrix(matrix.add(matrix2)));
 
     }
+
+    /**
+     * tests multiplying two matrices
+     */
 
     @Test
     public void testMulMatrix(){
@@ -81,6 +101,10 @@ public class TestStudent {
 
     }
 
+    /**
+     * tests transposing a matrix
+     */
+
     @Test
     public void testTranspose(){
         Matrix matrix = new Matrix(2,4, xfloat);
@@ -108,6 +132,10 @@ public class TestStudent {
 
     }
 
+    /**
+     * tests getting the minimum/maximum index of a matrix
+     */
+
     @Test
     public void testGetMinMax(){
         Matrix mat = new Matrix(3,2,xfloat);
@@ -125,10 +153,35 @@ public class TestStudent {
         assertEquals(46.1, mat.getMinMax(false));
     }
 
+    /**
+     * tests resizing a matrix
+     */
+
     @Test
     public void testResize(){
+        Matrix mat = new Matrix(4,4,xfloat);
+
+        mat.setCell(0,0,2.4);
+        mat.setCell(0,1,24.3);
+        mat.setCell(0,2,3.46);
+        mat.setCell(0,3,5.36);
+
+        mat.setCell(1,0,21.2);
+        mat.setCell(1,1,7.63);
+        mat.setCell(1,2,34.66);
+        mat.setCell(1,3,3.87);
+
+        mat.setCell(2,0,46.1);
+        mat.setCell(2,1,42.3);
+        mat.setCell(2,2,22.1);
+        mat.setCell(2,3,6.07);
+
 
     }
+
+    /**
+     * tests comparing two matrices
+     */
 
     @Test
     public void testCompare(){
