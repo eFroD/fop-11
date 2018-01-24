@@ -29,30 +29,14 @@ public class Matrix <T extends Comparable<T>> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public Matrix<T> add(Matrix<T> other){
         if (other.getColumns() == columns && other.getRows() == rows){
-
+            Matrix<T> tempMatrix =new Matrix<>(rows,columns,arithmetic);
+            for(int i=0; i < rows; i++){
+                for (int j=0; j < columns; j++){
+                    tempMatrix.setCell(i, j, arithmetic.add(this.getCell(i,j), (other.getCell(i,j)));
+                }
+            }return tempMatrix;
         } else return null;
     }
 
