@@ -10,15 +10,21 @@ public class Matrix <T extends Comparable<T>> {
     public Matrix(int rows, int columns, Arithmetic<T> arithmetic){
         this.rows = rows;
         this.columns = columns;
+        this.arithmetic = arithmetic;
     }
 
-    public int getRows() return rows;
-    public int getColumns() return columns;
-    public T getCell(int row, int column){}
-    public void setCell(int row, int column, T value){}
-
-
-
+    public int getRows(){
+        return rows;
+    }
+    public int getColumns(){
+        return columns;
+    }
+    public T getCell(int row, int column){
+        return data.get(row).get(column);
+    }
+    public void setCell(int row, int column, T value){
+        data.get(row).set(column, value);
+    }
 
 
 
