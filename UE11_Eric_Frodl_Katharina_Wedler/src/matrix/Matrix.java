@@ -69,6 +69,16 @@ public class Matrix <T extends Comparable<T>> {
     }
 
     public Matrix<T> resize(int rows, int columns){
+        neueMat = new Matrix<T>(this.getRows() + rows, this.getColumns() + columns, arithmetic);
+
+            for (int i= 0; i<neueMat.getRows();i++){
+                for (int j = 0; j < neueMat.getColumns(); j++){
+                    if (i >= this.getRows() || j >=this.getColumns()){
+                        neueMat.setCell(i,j,arithmetic.zero());}
+                    else neueMat.setCell(i,j,this.getCell(i,j));
+                }
+            }return neueMat;
+
 
     }
 }
