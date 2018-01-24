@@ -29,8 +29,6 @@ public class Matrix <T extends Comparable<T>> {
         data.get(row).set(column, value);
     }
 
-
-
     public Matrix<T> add(Matrix<T> other){
         if (other.getColumns() == columns && other.getRows() == rows){
             Matrix<T> tempMatrix =new Matrix<>(rows,columns,arithmetic);
