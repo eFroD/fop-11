@@ -8,7 +8,7 @@ public class Matrix <T extends Comparable<T>> {
     private LinkedList<T> colList, tempList;
     private Matrix newMat;
     private int rows, columns;
-    protected T tempNum;
+    protected T tempNum, tempNum2;
 
     public Matrix(int rows, int columns, Arithmetic<T> arithmetic){
         this.rows = rows;
@@ -81,9 +81,12 @@ public class Matrix <T extends Comparable<T>> {
             }
         }
 
+        System.out.println(tempList);
+
         if (min) {
-            for(int i = 0; i < rows; i++){
-                if(tempList.get(i).compareTo(tempNum) < 0){
+            for(int i = 0; i < tempList.size(); i++){
+                tempNum2 = tempList.get(i);
+                if(tempNum2.compareTo(tempNum) < 0){
                     tempNum = tempList.get(i);
                 }
             }
@@ -91,8 +94,9 @@ public class Matrix <T extends Comparable<T>> {
         }
 
         else {
-            for(int i = 0; i < rows; i++){
-                if(tempList.get(i).compareTo(tempNum) > 0){
+            for(int i = 0; i < tempList.size(); i++){
+                tempNum2 = tempList.get(i);
+                if(tempNum2.compareTo(tempNum) > 0){
                     tempNum = tempList.get(i);
                 }
             }
