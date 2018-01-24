@@ -5,11 +5,10 @@ import java.util.LinkedList;
 public class Matrix <T extends Comparable<T>> {
     private Arithmetic<T> arithmetic;
     private LinkedList<LinkedList<T>> data;
-    private LinkedList<T> colList;
-    private LinkedList<T>tempList;
-    private Matrix neueMat;
+    private LinkedList<T> colList, tempList;
+    private Matrix newMat;
     private int rows, columns;
-    protected T tempNum;
+    protected T tempNum, tempNum2;
 
     public Matrix(int rows, int columns, Arithmetic<T> arithmetic){
         this.rows = rows;
@@ -41,49 +40,55 @@ public class Matrix <T extends Comparable<T>> {
 
     public Matrix<T> add(Matrix<T> other){
         if (other.getColumns() == columns && other.getRows() == rows){
-            neueMat =new Matrix<>(rows,columns,arithmetic);
+            newMat =new Matrix<>(rows,columns,arithmetic);
             for(int i=0; i < getRows(); i++){
                 for (int j=0; j < getColumns(); j++){
-                    neueMat.setCell(i, j, arithmetic.add(this.getCell(i,j), (other.getCell(i,j))));
+                    newMat.setCell(i, j, arithmetic.add(this.getCell(i,j), (other.getCell(i,j))));
                 }
-            }return neueMat;
+            }return newMat;
         } else return null;
     }
 
     public Matrix<T> mul(Matrix<T> other){
-        Matrix<T> neueMat = new Matrix<T>(rows, other.getColumns(), arithmetic);
+        Matrix<T> newMat = new Matrix<T>(rows, other.getColumns(), arithmetic);
         if (columns == other.getRows()){
             for(int x = 0; x < rows; x++){
                 for(int y = 0; y < other.getColumns(); y++){
                     tempNum = arithmetic.zero();
                     for (int z = 0; z < columns; z++){
                         tempNum = arithmetic.add(tempNum, arithmetic.mul(this.getCell(x,z), (other.getCell(z,y))));
-                        neueMat.setCell(x ,y ,tempNum);
+                        newMat.setCell(x ,y ,tempNum);
                     }
                 }
-            } return neueMat;
+            } return newMat;
         } else return null;
     }
 
     public Matrix<T> transpose(){
-        neueMat = new Matrix<T>(this.getColumns(),this.getRows(),arithmetic);
+
+        newMat = new Matrix<T>(this.getColumns(),this.getRows(),arithmetic);
         for (int i = 0; i < neueMat.getRows() ;i++){
             for (int j = 0; j < neueMat.getColumns(); j++){
                 neueMat.setCell(i,j,this.getCell(j,i));
+
             }
-        }return neueMat;
+        }return newMat;
     }
 
     public T getMinMax(boolean min){
+        tempList = new LinkedList<>();
         for(int x = 0; x < rows; x++){
             for(int y = 0; y < getColumns(); y++) {
                 tempList.add(this.getCell(x,y));
             }
         }
 
+        System.out.println(tempList);
+
         if (min) {
-            for(int i = 0; i < rows; i++){
-                if(tempList.get(i).compareTo(tempNum) < 0){
+            for(int i = 0; i < tempList.size(); i++){
+                tempNum2 = tempList.get(i);
+                if(tempNum2.compareTo(tempNum) < 0){
                     tempNum = tempList.get(i);
                 }
             }
@@ -91,8 +96,9 @@ public class Matrix <T extends Comparable<T>> {
         }
 
         else {
-            for(int i = 0; i < rows; i++){
-                if(tempList.get(i).compareTo(tempNum) > 0){
+            for(int i = 0; i < tempList.size(); i++){
+                tempNum2 = tempList.get(i);
+                if(tempNum2.compareTo(tempNum) > 0){
                     tempNum = tempList.get(i);
                 }
             }
@@ -101,15 +107,15 @@ public class Matrix <T extends Comparable<T>> {
     }
 
     public Matrix<T> resize(int rows, int columns){
-        neueMat = new Matrix<T>(this.getRows() + rows, this.getColumns() + columns, arithmetic);
+        newMat = new Matrix<T>(this.getRows() + rows, this.getColumns() + columns, arithmetic);
 
-            for (int i= 0; i<neueMat.getRows();i++){
-                for (int j = 0; j < neueMat.getColumns(); j++){
+            for (int i= 0; i<newMat.getRows();i++){
+                for (int j = 0; j < newMat.getColumns(); j++){
                     if (i >= this.getRows() || j >=this.getColumns()){
-                        neueMat.setCell(i,j,arithmetic.zero());}
-                    else neueMat.setCell(i,j,this.getCell(i,j));
+                        newMat.setCell(i,j,arithmetic.zero());}
+                    else newMat.setCell(i,j,this.getCell(i,j));
                 }
-            }return neueMat;
+            }return newMat;
     }
 
     public boolean compareMatrix(Matrix<T> matrix){

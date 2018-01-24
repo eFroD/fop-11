@@ -16,24 +16,24 @@ public class TestStudent {
     @Test
     public void testMatrix(){
         Matrix mat1 = new Matrix(2, 2, xint);
-        assertEquals(mat1.getRows(), 2);
-        assertEquals(mat1.getColumns(), 2);
+        assertEquals(2, mat1.getRows());
+        assertEquals(2, mat1.getColumns());
     }
 
     @Test
     public void testGetCell(){
         Matrix mat1 = new Matrix(2, 2, xint);
         mat1.setCell(1,1,3);
-        assertEquals(mat1.getCell(1,1), 3);
+        assertEquals(3, mat1.getCell(1,1));
     }
 
     @Test
     public void testSetCell(){
         Matrix mat1 = new Matrix(2, 2, xint);
         mat1.setCell(1,1,3);
-        assertEquals(mat1.getCell(1,1), 3);
+        assertEquals(3, mat1.getCell(1,1));
         mat1.setCell(1,1,8);
-        assertEquals(mat1.getCell(1,1),8);
+        assertEquals(8, mat1.getCell(1,1));
     }
 
     @Test
@@ -48,8 +48,6 @@ public class TestStudent {
         matrix3.setCell(3,2,9);
 
         assertEquals(true, matrix3.compareMatrix(matrix.add(matrix2)));
-
-
 
     }
 
@@ -66,6 +64,7 @@ public class TestStudent {
         mat1.setCell(1,0,4);
         mat1.setCell(1,1,2);
         mat1.setCell(1,2,6);
+
         mat2.setCell(0,0,3);
         mat2.setCell(0,1,4);
         mat2.setCell(1,0,5);
@@ -77,6 +76,7 @@ public class TestStudent {
         mat3.setCell(0,1,53);
         mat3.setCell(1,0,70);
         mat3.setCell(1,1,66);
+
         assertEquals(true, mat3.compareMatrix(mat1.mul(mat2)));
 
     }
@@ -112,15 +112,17 @@ public class TestStudent {
     public void testGetMinMax(){
         Matrix mat = new Matrix(3,2,xfloat);
 
-        mat.setCell(1,1,2.6);
-        mat.setCell(1,2,24.3);
-        mat.setCell(1,3,46.1);
-        mat.setCell(2,1,42.3);
-        mat.setCell(2,2,2.1);
-        mat.setCell(2,3,6.0);
+        mat.setCell(0,0,2.6);
+        mat.setCell(0,1,24.3);
+        mat.setCell(1,0,46.1);
+        mat.setCell(1,1,42.3);
+        mat.setCell(2,0,2.1);
+        mat.setCell(2,1,6.0);
 
-        assertEquals(mat.getMinMax(true), 2.1);
-        assertEquals(mat.getMinMax(false),46.1);
+        mat.diplayMatrix();
+
+        assertEquals(2.1, mat.getMinMax(true));
+        assertEquals(46.1, mat.getMinMax(false));
     }
 
     @Test
@@ -138,5 +140,5 @@ public class TestStudent {
         matrix.diplayMatrix();
         assertEquals(false, matrix.compareMatrix(matrix2));
     }
-    
+
 }
