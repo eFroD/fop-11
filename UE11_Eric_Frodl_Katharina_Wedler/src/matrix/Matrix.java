@@ -5,8 +5,10 @@ import java.util.LinkedList;
 public class Matrix <T extends Comparable<T>> {
     private Arithmetic<T> arithmetic;
     private LinkedList<LinkedList<T>> data;
+    private LinkedList<T> tempList;
     private Matrix neueMat;
-    private int rows, columns, tempNum;
+    private int rows, columns;
+    protected T tempNum;
 
     public Matrix(int rows, int columns, Arithmetic<T> arithmetic){
         this.rows = rows;
@@ -41,17 +43,17 @@ public class Matrix <T extends Comparable<T>> {
     }
 
     public Matrix<T> mul(Matrix<T> other){
-        neueMat = new Matrix<T>(getRows(), other.getColumns(), arithmetic);
+        Matrix<T> neueMat = new Matrix<T>(rows, other.getColumns(), arithmetic);
         if (columns == other.getRows()){
-            for(int x = 0; x < getRows(); x++){
+            for(int x = 0; x < rows; x++){
                 for(int y = 0; y < other.getColumns(); y++){
-                    tempNum = 0;
-                    for (int z = 0; z < getColumns(); z++){
-                        tempNum += mul((getCell(x,z), other.getCell(z,y));
+                    tempNum = arithmetic.zero();
+                    for (int z = 0; z < columns; z++){
+                        tempNum = arithmetic.add(tempNum, arithmetic.mul(this.getCell(x,z), (other.getCell(z,y))));
                         neueMat.setCell(x ,y ,tempNum);
                     }
                 }
-            }
+            } return neueMat;
         } else return null;
     }
 
@@ -60,7 +62,29 @@ public class Matrix <T extends Comparable<T>> {
     }
 
     public T getMinMax(boolean min){
+        for(int x = 0; x < rows; x++){
+            for(int y = 0; y < getColumns(); y++) {
+                tempList.add(this.getCell(x,y));
+            }
+        }
 
+        if (min) {
+            for(int i = 0; i < rows; i++){
+                if(tempList.get(i).compareTo(tempNum) < 0){
+                    tempNum = tempList.get(i);
+                }
+            }
+            return tempNum;
+        }
+
+        else {
+            for(int i = 0; i < rows; i++){
+                if(tempList.get(i).compareTo(tempNum) > 0){
+                    tempNum = tempList.get(i);
+                }
+            }
+            return tempNum;
+        }
     }
 
     public Matrix<T> resize(int rows, int columns){
