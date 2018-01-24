@@ -18,11 +18,15 @@ public class Matrix <T extends Comparable<T>> {
     public void setCell(int row, int column, T value){}
 
     public Matrix<T> add(Matrix<T> other){
+        if (other.getColumns() == columns && other.getRows() == rows){
 
+        } else return null;
     }
 
     public Matrix<T> mul(Matrix<T> other){
+        if (columns == other.getRows()){
 
+        } else return null;
     }
 
     public Matrix<T> transpose(){
@@ -32,7 +36,7 @@ public class Matrix <T extends Comparable<T>> {
     public T getMinMax(boolean min){
 
     }
-    
+
     public Matrix<T> resize(int rows, int columns){
 
     }
