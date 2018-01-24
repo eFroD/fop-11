@@ -36,7 +36,7 @@ public class Matrix <T extends Comparable<T>> {
             neueMat =new Matrix<>(rows,columns,arithmetic);
             for(int i=0; i < getRows(); i++){
                 for (int j=0; j < getColumns(); j++){
-                    neueMat.setCell(i, j, arithmetic.add(this.getCell(i,j), (other.getCell(i,j)));
+                    neueMat.setCell(i, j, arithmetic.add(this.getCell(i,j), (other.getCell(i,j))));
                 }
             }return neueMat;
         } else return null;
