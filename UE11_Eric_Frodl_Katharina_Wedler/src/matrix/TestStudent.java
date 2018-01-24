@@ -116,7 +116,6 @@ public class TestStudent {
         matrix.setCell(1,1,5.3);
         matrix.setCell(1,2,3.1);
         matrix.setCell(1,3,9.7);
-        matrix.diplayMatrix();
         Matrix matrix2 = new Matrix(4,2,xfloat);
         matrix2.setCell(0,0,4);
         matrix2.setCell(0,1,2);
@@ -126,7 +125,7 @@ public class TestStudent {
         matrix2.setCell(2,1,3.1);
         matrix2.setCell(3,0,3);
         matrix2.setCell(3,1,9.7);
-        matrix2.diplayMatrix();
+
 
         assertEquals(true, matrix2.compareMatrix(matrix.transpose()));
 
@@ -146,9 +145,6 @@ public class TestStudent {
         mat.setCell(1,1,42.3);
         mat.setCell(2,0,2.1);
         mat.setCell(2,1,6.0);
-
-        mat.diplayMatrix();
-
         assertEquals(2.1, mat.getMinMax(true));
         assertEquals(46.1, mat.getMinMax(false));
     }
@@ -192,19 +188,6 @@ public class TestStudent {
         assertEquals(true, mat.resize(-2,-2).compareMatrix(mat2));
     }
 
-    /**
-     * tests comparing two matrices
-     */
 
-    @Test
-    public void testCompare(){
-        Matrix matrix = new Matrix(5,5,xint);
-        Matrix matrix2= new Matrix(5,5,xint);
-        matrix2.fillInt(2);
-        matrix.fillInt(1);
-
-        matrix.diplayMatrix();
-        assertEquals(false, matrix.compareMatrix(matrix2));
-    }
 
 }

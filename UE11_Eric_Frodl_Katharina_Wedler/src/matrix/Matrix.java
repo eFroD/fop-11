@@ -84,7 +84,6 @@ public class Matrix <T extends Comparable<T>> {
             }
         }
         Collections.sort(tempList);
-        System.out.println(tempList);
         if (min){
             return tempList.getFirst();
         }else return tempList.getLast();
@@ -123,13 +122,5 @@ public class Matrix <T extends Comparable<T>> {
             }
         }
     }
-    public void diplayMatrix(){
-        for (int i=0; i< this.getRows(); i++){
-            for (int j = 0; j< this.getColumns();j++){
-                System.out.print(this.getCell(i,j)+" ");
-            }System.out.println("");
-
-
-    }
-    }
+   
 }
