@@ -3,6 +3,15 @@ package matrix;
 import java.util.Collections;
 import java.util.LinkedList;
 
+
+/**
+ * This class implements several methods to process matrices
+ * @param <T>
+ *          the type of the matrix
+ *
+ * @author Eric Frodl, Katharina Wedler
+ */
+
 public class Matrix <T extends Comparable<T>> {
     private Arithmetic<T> arithmetic;
     private LinkedList<LinkedList<T>> data;
@@ -11,6 +20,18 @@ public class Matrix <T extends Comparable<T>> {
     private int rows, columns;
     protected T tempNum, tempNum2;
 
+
+    /**
+     * The constructor creates a new matrix and fills it with zero. Which zero is used, depends
+     * on the type of the matrix.
+     * @param rows
+     *          the amount of rows the matrix will have
+     * @param columns
+     *          this defines the amount of columns of the matrix
+     * @param arithmetic
+     *          sets the arithmetic to be used. The arithmetic depends on the type and is implemented
+     *          in {@link FloatArithmetic} and {@link IntegerArithmetic}
+     */
     public Matrix(int rows, int columns, Arithmetic<T> arithmetic){
         this.rows = rows;
         this.columns = columns;
@@ -25,12 +46,30 @@ public class Matrix <T extends Comparable<T>> {
         }
     }
 
+    /**
+     * this function delivers the amount of rows the matrix has
+     * @return the amount of rows
+     */
     public int getRows(){
         return rows;
     }
+
+    /**
+     * columns represent the second dimension of the matrix
+     * @return the amount of columns in that matrix
+     */
     public int getColumns(){
         return columns;
     }
+
+    /**
+     * given the coordinates, this function returns the contend of a cell in a matrix.
+     * @param row
+     *          the value of the row of the matrix, where the content is stored
+     * @param column
+     *          the column, to navigate within the given row, in order to finally get the content of the cell
+     * @return the content of  the cell after it is identified
+     */
     public T getCell(int row, int column){
         return data.get(row).get(column);
     }
@@ -39,6 +78,12 @@ public class Matrix <T extends Comparable<T>> {
 
     }
 
+    /**
+     * this is an addition method, which builds the sum of the given matrix and a passed one.
+     * @param other
+     *          the matrix, the given matrix should be added with
+     * @return  a matrix, representing the sum of the two matrices
+     */
     public Matrix<T> add(Matrix<T> other){
         if (other.getColumns() == columns && other.getRows() == rows){
             newMat =new Matrix<>(rows,columns,arithmetic);
@@ -50,6 +95,11 @@ public class Matrix <T extends Comparable<T>> {
         } else return null;
     }
 
+    /**
+     * this stands for a matrix-multiplication
+     * @param other the matrix, which should be multiplied with the given one
+     * @return the product matrix of the two matrices
+     */
     public Matrix<T> mul(Matrix<T> other){
         Matrix<T> newMat = new Matrix<T>(rows, other.getColumns(), arithmetic);
         if (columns == other.getRows()){
@@ -65,6 +115,10 @@ public class Matrix <T extends Comparable<T>> {
         } else return null;
     }
 
+    /**
+     * transposes the given matrix analog to the mathematical transpose of matrices
+     * @return the transposed matrix
+     */
     public Matrix<T> transpose(){
 
         newMat = new Matrix<T>(this.getColumns(),this.getRows(),arithmetic);
@@ -76,6 +130,13 @@ public class Matrix <T extends Comparable<T>> {
         }return newMat;
     }
 
+    /**
+     * determines the minimum or the maximum value, stored in a matrix
+     * @param min
+     *          min represents the decision whether the minimum or the maximum value of the matrix
+     *          should be returned
+     * @return if min is true, it returns the minimum value, if false the maximum value of the matrix
+     */
     public T getMinMax(boolean min){
         tempList = new LinkedList<>();
         for(int x = 0; x < getRows(); x++){
@@ -91,6 +152,15 @@ public class Matrix <T extends Comparable<T>> {
 
     }
 
+    /**
+     * resize a matrix to be bigger or smaller, depending on the following parameters
+     * @param rows
+     *          represents how many rows should be added or removed. if the value is positive the rows will be added
+     *          to the bottom of the matrix, if negative, the bottom rows will be removed for the given amount
+     * @param columns
+     *          analog to rows for the columns, if positive, the columns will be added, else the the columns will be deleted.
+     * @return the resized matrix. if rows or columns were added, the values will be set to zero.
+     */
     public Matrix<T> resize(int rows, int columns){
         newMat = new Matrix<T>(this.getRows() + rows, this.getColumns() + columns, arithmetic);
 
@@ -103,24 +173,41 @@ public class Matrix <T extends Comparable<T>> {
             }return newMat;
     }
 
+    /**
+     * compares all values of a matrix with the values of another matrix
+     * @param matrix
+     *          the matrix, which should be compared with the given one.
+     * @return true, if the two matrices are equal, false if a value differs
+     */
     public boolean compareMatrix(Matrix<T> matrix){
-        for (int i=0; i <this.getRows(); i++){
-            for (int j = 0; j < this.getColumns();j++){
-                if (this.getCell(i,j).compareTo(matrix.getCell(i,j)) !=0){
-                    return false;
+        if (this.getRows() == matrix.getRows() && this.getColumns() == matrix.getColumns()) {
+            for (int i = 0; i < this.getRows(); i++) {
+                for (int j = 0; j < this.getColumns(); j++) {
+
+                    if (this.getCell(i, j).compareTo(matrix.getCell(i, j)) != 0) {
+                        return false;
+                    }
+
                 }
             }
-        }return true;
+            return true;
+        }else return false;
     }
 
-    public void fillInt(T temp){
+    /**
+     * for testing, this method fills a matrix with a value
+     * @param temp
+     *          the value, that should be filled into the matrix
+     */
+    public void fill(T temp){
 
         for (int i=0; i< this.getRows(); i++){
             for (int j = 0; j< this.getColumns();j++){
                 this.setCell(i,j,temp);
-                arithmetic.add(temp,temp);
+
             }
         }
     }
-   
+
+
 }

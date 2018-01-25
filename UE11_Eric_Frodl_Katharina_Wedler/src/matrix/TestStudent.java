@@ -57,10 +57,10 @@ public class TestStudent {
         Matrix matrix = new Matrix(5,5,xint);
         Matrix matrix2= new Matrix(5,5,xint);
         Matrix matrix3 = new Matrix(5,5,xint);
-        matrix2.fillInt(2);
-        matrix.fillInt(4);
+        matrix2.fill(2);
+        matrix.fill(4);
         matrix.setCell(3,2, 7);
-        matrix3.fillInt(6);
+        matrix3.fill(6);
         matrix3.setCell(3,2,9);
 
         assertEquals(true, matrix3.compareMatrix(matrix.add(matrix2)));
@@ -185,7 +185,18 @@ public class TestStudent {
         mat2.setCell(1,0,21.2);
         mat2.setCell(1,1,7.63);
 
+        Matrix mat3 = new Matrix(7,1,xfloat);
+        mat3.setCell(0,0,2.4);
+        mat3.setCell(1,0,21.2);
+        mat3.setCell(2,0,46.1);
+        mat3.setCell(3,0,53.1);
+        mat3.setCell(4,0,(float)0.0);
+        mat3.setCell(5,0,(float)0.0);
+        mat3.setCell(6,0,(float)0.0);
+
         assertEquals(true, mat.resize(-2,-2).compareMatrix(mat2));
+        assertEquals(true, mat.resize(3,-3).compareMatrix(mat3));
+
     }
 
 
